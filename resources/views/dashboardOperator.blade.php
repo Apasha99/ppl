@@ -4,31 +4,31 @@
     <section>
         <div class="container-lg my-5">
             <div class="text-center text-light">
-                <div class="display-6">Welcome, Operator</div>
+                <div class="display-6">Welcome, Welcome, {{Auth::user()->email}}</div>
             </div>
 
             <div class="row justify-content-center align-items-center gy-3 mt-5">
                 <div class="col-lg-2 mx-2 bg-light border border-dark border-2 rounded">
                     <div class="d-flex justify-content-between pt-3 pe-2">
-                        <p class="border border-dark border-1 rounded px-3">/100</p>
+                        <p class="border border-dark border-1 rounded px-3">{{$user_count}}</p>
                         <h6 class="align-items-center"><i class="bi bi-people-fill"></i> User</h6>
                     </div>
                 </div>
                 <div class="col-lg-3 mx-2 bg-light border border-dark border-2 rounded">
                     <div class="d-flex justify-content-between pt-3 pe-2">
-                        <p class="border border-dark border-1 rounded px-3">/100</p>
+                        <p class="border border-dark border-1 rounded px-3">{{$departemen_count}}</p>
                         <h6 class="align-items-center"><i class="bi bi-building-fill"></i> Departemen</h6>
                     </div>
                 </div>
                 <div class="col-lg-3 mx-2 bg-light border border-dark border-2 rounded">
                     <div class="d-flex justify-content-between pt-3 pe-2">
-                        <p class="border border-dark border-1 rounded px-3">/100</p>
+                        <p class="border border-dark border-1 rounded px-3">{{$dosen_count}}</p>
                         <h6 class="align-items-center"><i class="bi bi-mortarboard-fill"></i> Dosen Wali</h6>
                     </div>
                 </div>
                 <div class="col-lg-3 mx-2 bg-light border border-dark border-2 rounded">
                     <div class="d-flex justify-content-between pt-3 pe-2">
-                        <p class="border border-dark border-1 rounded px-3">/100</p>
+                        <p class="border border-dark border-1 rounded px-3">{{$mahasiswa_count}}</p>
                         <h6 class="align-items-center"><i class="bi bi-backpack-fill"></i> Mahasiswa</h6>
                     </div>
                 </div>
@@ -58,22 +58,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @for ($i = 1; $i <= 20; $i++)
-                            <tr>
-                                <td>Mahasiswa {{ $i }}</td>
-                                <td>NIM{{ $i }}</td>
-                                <td>20{{ $i }}</td>
-                                <td>Aktif</td>
-                                <td>SNMPTN</td>
-                                <td>Dr. Smith</td>
-                                <td>user{{ $i }}</td>
-                                <td>****</td>
-                                <td>
-                                    <button class="btn btn-warning">Edit</button>
-                                    <button class="btn btn-danger">Delete</button>
-                                </td>
-                            </tr>
-                        @endfor
+                        @foreach($mahasiswas as $mahasiswa)
+                        <tr>
+                            <td>{{ $mahasiswa->nama }}</td>
+                            <td>{{ $mahasiswa->nim }}</td>
+                            <td>{{ $mahasiswa->angkatan }}</td>
+                            <td>{{ $mahasiswa->status }}</td>
+                            <td>{{ $mahasiswa->dosen_wali->nip }}</td>
+                            <td>{{ $mahasiswa->dosen_wali ? $mahasiswa->dosen_wali->nama : 'Tidak ada dosen wali' }}</td>
+                            <td>{{ $mahasiswa->email }}</td>
+                            <td>
+                                <button class="btn btn-warning">Edit</button>
+                                <button class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
