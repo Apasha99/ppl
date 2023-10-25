@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function(){
     Route::get('dashboardMahasiswa', [DashboardMahasiswaController::class,'dashboardMahasiswa'])->middleware('only_mahasiswa');
     Route::get('dashboardDosen', [DashboardDosenController::class,'dashboardDosen'])->middleware('only_dosen');
     Route::get('dashboardOperator', [DashboardOperatorController::class,'dashboardOperator'])->middleware('only_operator');
+    Route::get('editProfil', [DashboardOperatorController::class,'editProfil'])->middleware('only_operator');
     Route::get('dashboardDepartemen', [DashboardDepartemenController::class,'dashboardDepartemen'])->middleware('only_departemen');
     Route::get('daftar_akun', [UserController::class,'daftar_akun'])->middleware('only_operator');
 });
