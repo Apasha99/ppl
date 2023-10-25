@@ -17,6 +17,6 @@ class Operator extends Model
 
     public function user()
     {
-        return $this->belongsTo(Category::class, 'email', 'email');
+        return $this->belongsTo(User::class, 'email', 'email');
     }
 }

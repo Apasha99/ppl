@@ -7,18 +7,25 @@ use App\Models\Mahasiswa;
 use App\Models\Departemen;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 class DashboardOperatorController extends Controller
 {
     public function dashboardOperator(Request $request){
+        // if(!Schema::hasTable('mahasiswa')){
+        //     return "Error: Table 'mahasiswa' does not exist in the database.";
+        // }
+        
         $mahasiswaCount = Mahasiswa::count();
         $dosenCount = Dosen::count();
         $departemenCount = Departemen::count();
         $userCount = User::count();
-        $user = User::join('mahasiswa', 'user.email', '=', 'mahasiswa.email')
-            ->join('dosen', 'user.email', '=', 'dosen.email')
-            ->join('departemen', 'user.email', '=', 'departemen.email')
-            ->select('user.id', 'user.email', 'user.password', 'mahasiswa.nama as nama_mahasiswa', 'dosen.nama as nama_dosen', 'departemen.nama as nama_departemen');
-        return view('dashboardOperator', ['user'=>$user,'user_count'=> $userCount, 'mahasiswa_count'=> $mahasiswaCount, 'dosen_count'=>$dosenCount,'departemen_count'=>$departemenCount]);
-    }
+        
+        $mahasiswas = Mahasiswa::join('users','mahasiswa.email', '=', 'users.email')
+                ->join('dosen_wali', 'mahasiswa.nip', '=', 'dosen_wali.nip')
+                ->select('mahasiswa.nama', 'mahasiswa.nim', 'mahasiswa.angkatan', 'mahasiswa.status', 'users.email', 'dosen_wali.nip','dosen_wali.nama')
+                ->get();
+                
+        return view('dashboardOperator', ['mahasiswas'=>$mahasiswas,'user_count'=> $userCount, 'mahasiswa_count'=>$mahasiswaCount,'dosen_count'=>$dosenCount, 'departemen_count'=>$departemenCount]);
+    }    
 }

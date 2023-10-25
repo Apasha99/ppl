@@ -9,7 +9,7 @@ class Departemen extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
+    protected $table = 'departemen';
     protected $fillable = [
         'email',
         'fotoProfil',
