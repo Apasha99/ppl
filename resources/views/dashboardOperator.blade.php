@@ -42,6 +42,11 @@
         </div>
 
         <div class="container-lg mt-5 pb-5">
+            @if(session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
             <div class="justify-content-center">
                 <table class="table table-hover table-bordered">
                     <thead class="table-dark">
@@ -65,7 +70,7 @@
                             <td>{{ $mahasiswa->angkatan }}</td>
                             <td>{{ $mahasiswa->status }}</td>
                             <td>{{ $mahasiswa->dosen_wali->nip }}</td>
-                            <td>{{ $mahasiswa->dosen_wali ? $mahasiswa->dosen_wali->nama : 'Tidak ada dosen wali' }}</td>
+                            <td>{{ $mahasiswa->dosen_wali->nama}}</td>
                             <td>{{ $mahasiswa->email }}</td>
                             <td>
                                 <button class="btn btn-warning">Edit</button>
@@ -78,7 +83,7 @@
             </div>
 
             <div class="d-flex justify-content-end mt-3">
-                <a href="/tambah-mahasiswa" class="btn btn-success">+ Tambah Mahasiswa</a>
+                <a href="/mahasiswa-create" class="btn btn-success">+ Tambah Mahasiswa</a>
                 <!-- Ganti "/tambah-mahasiswa" dengan URL yang sesuai -->
             </div>
         </div>
