@@ -12,10 +12,16 @@ class Mahasiswa extends Model
     use SoftDeletes;
     protected $table = 'mahasiswa';
     protected $fillable = [
+        'nama',
+        'nim',
+        'angkatan',
+        'status',
+        'nip',
         'alamat',
         'kabkota',
         'provinsi',
         'email',
+        'password',
         'noHandphone',
         'fotoProfil',
     ];

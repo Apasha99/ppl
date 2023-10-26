@@ -23,9 +23,12 @@ class DashboardOperatorController extends Controller
         
         $mahasiswas = Mahasiswa::join('users','mahasiswa.email', '=', 'users.email')
                 ->join('dosen_wali', 'mahasiswa.nip', '=', 'dosen_wali.nip')
-                ->select('mahasiswa.nama', 'mahasiswa.nim', 'mahasiswa.angkatan', 'mahasiswa.status', 'users.email', 'dosen_wali.nip','dosen_wali.nama')
+                ->select('mahasiswa.nama', 'mahasiswa.nim', 'mahasiswa.angkatan', 'mahasiswa.status', 'users.email','users.password','dosen_wali.nip','dosen_wali.nama as dosen_nama')
+                ->get();
+        $users = User::join('roles','users.role_id','=','roles.id')
+                ->select('users.role_id','roles.name')
                 ->get();
                 
-        return view('dashboardOperator', ['mahasiswas'=>$mahasiswas,'user_count'=> $userCount, 'mahasiswa_count'=>$mahasiswaCount,'dosen_count'=>$dosenCount, 'departemen_count'=>$departemenCount]);
+        return view('dashboardOperator', ['users'=>$users,'mahasiswas'=>$mahasiswas,'user_count'=> $userCount, 'mahasiswa_count'=>$mahasiswaCount,'dosen_count'=>$dosenCount, 'departemen_count'=>$departemenCount]);
     }    
 }

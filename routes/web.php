@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardDosenController;
 use App\Http\Controllers\DashboardOperatorController;
 use App\Http\Controllers\DashboardDepartemenController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OperatorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,11 @@ Route::middleware('auth')->group(function(){
     Route::get('logout', [AuthController::class,'logout']);
     Route::get('dashboardMahasiswa', [DashboardMahasiswaController::class,'dashboardMahasiswa'])->middleware('only_mahasiswa');
     Route::get('dashboardDosen', [DashboardDosenController::class,'dashboardDosen'])->middleware('only_dosen');
+
     Route::get('dashboardOperator', [DashboardOperatorController::class,'dashboardOperator'])->middleware('only_operator');
+    Route::get('mahasiswa-create', [OperatorController::class,'create'])->name('mahasiswa.create')->middleware('only_operator');
+    Route::post('mahasiswa-create', [OperatorController::class,'store'])->name('mahasiswa.store')->middleware('only_operator');
+
     Route::get('dashboardDepartemen', [DashboardDepartemenController::class,'dashboardDepartemen'])->middleware('only_departemen');
     Route::get('daftar_akun', [UserController::class,'daftar_akun'])->middleware('only_operator');
 });

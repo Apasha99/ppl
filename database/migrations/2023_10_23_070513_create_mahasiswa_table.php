@@ -19,10 +19,11 @@ return new class extends Migration
             $table->string('alamat', 100);
             $table->string('kabkota', 100);
             $table->string('provinsi', 100);
-            $table->string('email')->unique();;
+            $table->string('email')->unique();
+            $table->string('password');
             $table->string('noHandphone', 20);
             $table->string('fotoProfil', 100);
-            $table->foreign('email')->references('email')->on('users');
+            $table->foreign('password','email')->references('email')->on('users');
             $table->string('nip');
             $table->foreign('nip')->references('nip')->on('dosen_wali');
             $table->timestamps();
