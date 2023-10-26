@@ -91,7 +91,7 @@
                         </div>
 
                         <div class="text-center my-5">
-                            <button type="submit" class="btn btn-secondary">Tambah Data</button>
+                            <button type="submit" class="btn btn-success px-3">Tambah Data</button>
                         </div>
 
                     </form>
