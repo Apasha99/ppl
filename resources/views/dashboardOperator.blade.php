@@ -73,8 +73,8 @@
                             <td>{{ $mahasiswa->dosen_wali->nama}}</td>
                             <td>{{ $mahasiswa->email }}</td>
                             <td>
-                                <button class="btn btn-warning">Edit</button>
-                                <button class="btn btn-danger">Delete</button>
+                                <button class="btn btn-warning btn-sm">Edit</button>
+                                <button class="btn btn-danger btn-sm">Delete</button>
                             </td>
                         </tr>
                         @endforeach
@@ -82,7 +82,7 @@
                 </table>
             </div>
 
-            <div class="d-flex justify-content-end mt-5">
+            <div class="d-flex justify-content-end mt-4">
                 <a href="/mahasiswa-create" class="btn btn-success">+ Tambah Mahasiswa</a>
                 <!-- Ganti "/tambah-mahasiswa" dengan URL yang sesuai -->
             </div>
