@@ -30,7 +30,7 @@
             <a class="navbar-brand me-5">
                 <span class="fw-bold">
                     {{-- insert image here --}}
-                    Dashboard Operator
+                    Dashboard {{ Auth::user()->role->name }}
                 </span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -45,12 +45,12 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle justify-content-end" href="#"
+                        <a class="nav-link dropdown-toggle justify-content-end" href=""
                             id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-fill"></i>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="/editProfil">Edit Profile</a></li>
+                            <li><a class="dropdown-item" href="/editProfilOperator">Edit Profile</a></li>
                             <li><a class="dropdown-item" href="/logout">Logout</a></li>
                         </ul>
                     </li>
