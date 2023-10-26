@@ -41,10 +41,11 @@
             <h1 class="display-6">Daftar Mahasiswa</h2>
         </div>
 
-        <div class="container-lg mt-5 pb-5">
+        <div class="container-lg my-5 pb-4">
             @if(session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-all"></i> {{ session('status') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
             <div class="justify-content-center">
@@ -58,7 +59,6 @@
                             <th scope="col">Jalur Masuk</th>
                             <th scope="col">Dosen Wali</th>
                             <th scope="col">Username</th>
-                            <th scope="col">Password</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
@@ -82,7 +82,7 @@
                 </table>
             </div>
 
-            <div class="d-flex justify-content-end mt-3">
+            <div class="d-flex justify-content-end mt-5">
                 <a href="/mahasiswa-create" class="btn btn-success">+ Tambah Mahasiswa</a>
                 <!-- Ganti "/tambah-mahasiswa" dengan URL yang sesuai -->
             </div>

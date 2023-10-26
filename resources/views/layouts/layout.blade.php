@@ -17,12 +17,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <style>
-        body{
-            background-color: #212529; 
+        body {
+            background-color: #212529;
         }
     </style>
 
 </head>
+
 <body>
 
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
@@ -67,6 +68,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
+
+    @yield('script')
+
 </body>
 
 </html>
