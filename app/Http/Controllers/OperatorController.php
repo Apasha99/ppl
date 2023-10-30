@@ -71,6 +71,7 @@ class OperatorController extends Controller
             $mahasiswa->status = $request->status;
             $mahasiswa->nip = $request->nip;
             $mahasiswa->username = $username; // menghubungkan ke user yang baru dibuat
+            $mahasiswa->iduser = $user->id;
             $mahasiswa->save();
         });
 
@@ -79,15 +80,15 @@ class OperatorController extends Controller
 
     public function edit($nip)
     {
-        $operator = Operator::where('nip', $nip)->first();
+        $operators = Operator::where('nip', $nip)->first();
         $users = User::all();
-        return view('profilOperator', ['users' => $users, 'operator' => $operator]);
+        return view('profilOperator', ['users' => $users, 'operators' => $operators]);
     }
 
     public function update(Request $request, $nip)
     {
-        $operator = Operator::where('nip', $nip)->first();
-        $user = User::where('username', $operator->username)->first();
+        $operators = Operator::where('nip', $nip)->first();
+        $user = User::where('username', $operators->username)->first();
 
         $validated = $request->validate([
             'username' => 'required',
@@ -105,14 +106,14 @@ class OperatorController extends Controller
 
             //$validated['password'] = Hash::make($validated['password']);
 
-            $operator->update($validated);
+            $operators->update($validated);
             $user->update($validated);
 
             if ($request->hasFile('fotoProfil') && $request->file('fotoProfil')->isValid()) {
                 $fotoProfil = $request->file('fotoProfil');
                 $fotoProfilPath = $fotoProfil->store('fotoProfil', 'public');
-                $operator->fotoProfil = $fotoProfilPath;
-                $operator->save();
+                $operators->fotoProfil = $fotoProfilPath;
+                $operators->save();
             }
 
             return redirect('profilOperator')->with('status', 'Profil berhasil diupdate');

@@ -66,30 +66,30 @@
                             <span class="input-group-text">
                                 <i class="bi bi-person-fill"></i>
                             </span>
-                            <input type="text" class="form-control" id="nama" name="nama" value="{{ $operators->nama }}" readonly>
+                            <input type="text" class="form-control" id="nama" name="nama" value="{{ $operators->nama }}" disabled>
                         </div>
 
                         <label for="nip" class="form-label">NIP</label>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="nip" name="nip" value="{{ $operators->nip }}" readonly>
+                            <input type="text" class="form-control" id="nip" name="nip" value="{{ $operators->nip }}" disabled>
                         </div>
 
-                        <label for="username" class="form-label">E-mail</label>
+                        <label for="username" class="form-label">Username</label>
                         <div class="input-group mb-3">
-                            <span class="input-group-text">
+                            <!-- <span class="input-group-text">
                                 <i class="bi bi-envelope-fill"></i>
-                            </span>
+                            </span> -->
                             <input type="username" class="form-control" id="username" name="username"
-                                value="{{ $operators->username }}">
+                                value="{{ $operators->username }}" disabled>
                             @error('username')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <label for="current_password" class="form-label">Password Lama</label>
+                        <!-- <label for="current_password" class="form-label">Password Lama</label>
                         <div class="input-group mb-5">
                             <input type="password" class="form-control" id="current_password"
-                                name="current_password" value="{{ $operators->current_password }}" readonly>
+                                name="current_password" value="{{ $operators->current_password }}" disabled>
                             @error('current_password')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -111,7 +111,7 @@
                             @error('new_confirm_password')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div> -->
 
                         <a href="profilOperator" class="btn btn-warning">Edit</a>
                         <a href="profilOperator" type="submit" class="btn btn-success">Save</a>

@@ -29,7 +29,7 @@ class DashboardOperatorController extends Controller
         $users = User::join('roles','users.role_id','=','roles.id')
                 ->select('users.role_id','roles.name')
                 ->get();
-        $operators = Operator::join('users','operator.username','=','users.username')
+        $operators = Operator::join('users','operator.iduser','=','users.id')
                 ->select('users.username','users.password','operator.nama','operator.nip','operator.fotoProfil')
                 ->first();
         return view('dashboardOperator', ['operators'=>$operators,'users'=>$users,'mahasiswas'=>$mahasiswas,'user_count'=> $userCount, 'mahasiswa_count'=>$mahasiswaCount,'dosen_count'=>$dosenCount, 'departemen_count'=>$departemenCount]);

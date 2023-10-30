@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('departemen', function (Blueprint $table) {
-            $table->string('nama', 100);
-            $table->string('username')->unique();;
-            $table->string('kode', 100)->primary();
-            $table->string('fotoProfil', 100);
-            $table->timestamps();
+        Schema::table('operator', function (Blueprint $table) {
+            $table->unsignedBigInteger('iduser');
+            $table->foreign('iduser')->references('id')->on('users');
         });
     }
 
@@ -25,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('departemen');
+        Schema::table('operator', function (Blueprint $table) {
+            $table->dropForeign(['iduser']);
+            $table->dropColumn('iduser');
+        });
     }
 };

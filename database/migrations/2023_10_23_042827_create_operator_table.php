@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('operator', function (Blueprint $table) {
             $table->string('nama', 100);
-            $table->string('email')->unique();;
+            $table->string('username')->unique();;
             $table->string('nip', 20)->primary();
             $table->string('fotoProfil', 100);
-            $table->foreign('email')->references('email')->on('users');
             $table->timestamps();
         });
     }

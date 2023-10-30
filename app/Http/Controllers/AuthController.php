@@ -20,14 +20,6 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        // // Panggil method untuk verifikasi CAPTCHA
-        // $captchaValid = $this->validateCaptcha($request);
-
-        // if (!$captchaValid) {
-        //     return redirect('/login')
-        //         ->with('status', 'failed')
-        //         ->with('message', 'Captcha validation failed!');
-        // }
         $credentials = $request->only('username', 'password');
         // Cek login valid
         if (Auth::attempt($credentials)) {
@@ -71,17 +63,5 @@ class AuthController extends Controller
         return redirect('login');
     }
 
-    // private function validateCaptcha(Request $request) {
-    //     session_start();
-    //     if ($request->has('captcha')) {
-    //         $userCaptcha = $request->input('captcha');
-    //         $captchaCode = $_SESSION['captcha_code'];
 
-    //         if ($userCaptcha === $captchaCode) {
-    //             return true; // Kode CAPTCHA cocok
-    //         }
-    //     }
-
-    //     return false; // Kode CAPTCHA tidak cocok
-    // }
 }

@@ -22,4 +22,11 @@ class Operator extends Model
     {
         return $this->belongsTo(User::class, 'username', 'username');
     }
+
+    public function getImageURL(){
+        if($this->foto){
+            return url("storage/" . $this->foto);
+        }
+        return "https://api.dicebear.com/6.x/fun-emoji/svg?seed=($this=>name)";
+    }
 }
