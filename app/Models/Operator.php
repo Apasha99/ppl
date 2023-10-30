@@ -10,13 +10,16 @@ class Operator extends Model
     use HasFactory;
     use SoftDeletes;
 
+    public $incrementing = false;
+    protected $table = 'operator';
+    protected $primaryKey = 'nip';
     protected $fillable = [
-        'email',
+        'username',
         'fotoProfil',
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'email', 'email');
+        return $this->belongsTo(User::class, 'username', 'username');
     }
 }

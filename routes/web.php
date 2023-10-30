@@ -35,6 +35,8 @@ Route::middleware('auth')->group(function(){
     Route::get('dashboardOperator', [DashboardOperatorController::class,'dashboardOperator'])->middleware('only_operator');
     Route::get('mahasiswa-create', [OperatorController::class,'create'])->name('mahasiswa.create')->middleware('only_operator');
     Route::post('mahasiswa-create', [OperatorController::class,'store'])->name('mahasiswa.store')->middleware('only_operator');
+    Route::get('dashboardOperator/profilOperator/{nip}', [OperatorController::class, 'edit'])->name('operator.edit')->middleware('only_operator');
+    Route::post('dashboardOperator/profilOperator/{nip}/{username}', [OperatorController::class, 'update'])->name('operator.update')->middleware('only_operator');
 
     Route::get('dashboardDepartemen', [DashboardDepartemenController::class,'dashboardDepartemen'])->middleware('only_departemen');
     Route::get('daftar_akun', [UserController::class,'daftar_akun'])->middleware('only_operator');

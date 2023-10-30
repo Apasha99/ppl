@@ -20,7 +20,7 @@ class Mahasiswa extends Model
         'alamat',
         'kabkota',
         'provinsi',
-        'email',
+        'username',
         'password',
         'noHandphone',
         'fotoProfil',
@@ -28,7 +28,7 @@ class Mahasiswa extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'email', 'email');
+        return $this->belongsTo(User::class, 'username', 'username');
     }
 
     public function dosen_wali()

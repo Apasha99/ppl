@@ -11,57 +11,77 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     public function login() {
-        return view ('login');
+        return view('login');
     }
 
     public function authenticating(Request $request) {
-        $credentials = $request-> validate([
-            'email' => ['required'],
-            'password' => ['required'], 
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required',
         ]);
-        
-        //cek login valid
-        //cek status user active
-        if (Auth::attempt($credentials)){
-            //$request->session()->regenerate();
+
+        // // Panggil method untuk verifikasi CAPTCHA
+        // $captchaValid = $this->validateCaptcha($request);
+
+        // if (!$captchaValid) {
+        //     return redirect('/login')
+        //         ->with('status', 'failed')
+        //         ->with('message', 'Captcha validation failed!');
+        // }
+        $credentials = $request->only('username', 'password');
+        // Cek login valid
+        if (Auth::attempt($credentials)) {
             if (Auth::user()->role_id == 1 && Auth::user()->status == 'inactive') {
                 Auth::logout();
                 $request->session()->invalidate();
                 $request->session()->regenerateToken();
-                
+
                 return redirect('/login')
                     ->with('status', 'failed')
                     ->with('message', 'Your account is not active yet, please contact admin!');
             }
-            
+
             $request->session()->regenerate();
-            if(Auth::user()->role_id==1){
+            if (Auth::user()->role_id == 1) {
                 return redirect('dashboardMahasiswa');
             }
 
-            if(Auth::user()->role_id==2){
+            if (Auth::user()->role_id == 2) {
                 return redirect('dashboardDosen');
             }
 
-            if(Auth::user()->role_id==3){
+            if (Auth::user()->role_id == 3) {
                 return redirect('dashboardOperator');
             }
 
-            if(Auth::user()->role_id==4){
+            if (Auth::user()->role_id == 4) {
                 return redirect('dashboardDepartemen');
             }
         }
 
-        Session::flash('status','failed');
-        Session::flash('message','Login invalid');
+        Session::flash('status', 'failed');
+        Session::flash('message', 'Login gagal. Periksa username dan password Anda.');
         return redirect('/login');
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request) {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('login');
     }
-    
+
+    // private function validateCaptcha(Request $request) {
+    //     session_start();
+    //     if ($request->has('captcha')) {
+    //         $userCaptcha = $request->input('captcha');
+    //         $captchaCode = $_SESSION['captcha_code'];
+
+    //         if ($userCaptcha === $captchaCode) {
+    //             return true; // Kode CAPTCHA cocok
+    //         }
+    //     }
+
+    //     return false; // Kode CAPTCHA tidak cocok
+    // }
 }

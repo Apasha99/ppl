@@ -11,13 +11,13 @@ class Dosen extends Model
     use SoftDeletes;
     protected $table = 'dosen_wali';
     protected $fillable = [
-        'email',
+        'username',
         'fotoProfil',
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'email', 'email');
+        return $this->belongsTo(User::class, 'username', 'username');
     }
 }
 

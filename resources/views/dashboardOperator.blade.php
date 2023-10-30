@@ -58,7 +58,7 @@
                             <i class="bi bi-person-fill"></i>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                            <li><a class="dropdown-item" href="{{ route('operator.edit', ['nip' => $operators->nip]) }}">Edit Profile</a></li>
                             <li><a class="dropdown-item" href="logout">Logout</a></li>
                         </ul>
                     </li>
@@ -68,7 +68,7 @@
     </nav>
 
     {{-- DASHBOARD OPERATOR DASHBOARD OPERATOR --}}
-    <h1 class="mt-4">Welcome, {{Auth::user()->email}}</h1>
+    <h1 class="mt-4">Welcome, {{Auth::user()->username}}</h1>
     <div class="row mt-5">
         <div class="col-lg-3 ">
             <div class="card-data">
@@ -149,7 +149,7 @@
                             <td>{{ $mahasiswa->status }}</td>
                             <td>{{ $mahasiswa->dosen_wali->nip }}</td>
                             <td>{{ $mahasiswa->dosen_wali->nama}}</td>
-                            <td>{{ $mahasiswa->email }}</td>
+                            <td>{{ $mahasiswa->username }}</td>
                             <td>
                                 <button class="btn btn-warning">Edit</button>
                                 <button class="btn btn-danger">Delete</button>

@@ -82,10 +82,10 @@
                 @enderror
             </div>
             <div style="margin-bottom: 10px;">
-                <label for="email">Email:</label>
-                <input type="text" name="email" id="email" required style="width: 100%;">
-                <button type="button" class="btn btn-primary" onclick="generateEmail()" style=" margin-top:10px;">Generate</button>
-                @error('email')
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" required style="width: 100%;">
+                <button type="button" class="btn btn-primary" onclick="generateUsername()" style=" margin-top:10px;">Generate</button>
+                @error('username')
                     <div class="alert alert-danger">{{$message}}</div>
                 @enderror
             </div>
@@ -99,7 +99,13 @@
             </div>
             <div style="margin-bottom: 10px;">
                 <label for="nip">Nama Doswal:</label>
-                <input type="text" name="nip" id="nip" required style="width: 100%;">
+                <select name="nip" id="nip" required style="width: 100%;">
+                    <option value="">Pilih Dosen Wali</option>
+                    @foreach($dosens as $dosen)
+                        <option value="{{ $dosen->nip }}">{{ $dosen->nama }}</option>
+                    @endforeach
+                </select>
+
                 @error('nip')
                     <div class="alert alert-danger">{{$message}}</div>
                 @enderror
@@ -109,12 +115,12 @@
     </div>
 
     <script>
-        // Function to generate a random email
-        function generateEmail() {
-            var emailField = document.getElementById("email");
+        // Function to generate a random username
+        function generateUsername() {
+            var usernameField = document.getElementById("username");
             var namaField = document.getElementById("nama");
             if (namaField.value) {
-                emailField.value = namaField.value.replace(/\s/g, '') + '@example.com';
+                usernameField.value = namaField.value.replace(/\s/g, '');
             }
         }
 
